@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "57653846854",
+    "project_id": "creditinfo-e38c5",
+    "storage_bucket": "creditinfo-e38c5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:57653846854:android:5d8c886c1ed39463dafb47",
+        "android_client_info": {
+          "package_name": "com.example.creditinfo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "57653846854-uabc7pn5ntsvirgfjafqm2q9rsv5ve1r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.creditinfo",
+            "certificate_hash": "6695ed2e8b25f4bf42db896a5df8d548bcea9616"
+          }
+        },
+        {
+          "client_id": "57653846854-575rlp9hmv6r1oosq6kojtru2tuth15o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQbo_Tcyxzjs_WGxM7Mw-SipooyeZuZlk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "57653846854-575rlp9hmv6r1oosq6kojtru2tuth15o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
