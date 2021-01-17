@@ -1,20 +1,20 @@
 {
   "project_info": {
-    "project_number": "57653846854",
-    "project_id": "creditinfo-e38c5",
-    "storage_bucket": "creditinfo-e38c5.appspot.com"
+    "project_number": "657120242684",
+    "project_id": "creditinfo-8eef6",
+    "storage_bucket": "creditinfo-8eef6.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:57653846854:android:5d8c886c1ed39463dafb47",
+        "mobilesdk_app_id": "1:657120242684:android:0ad9cd6625bd64a4326079",
         "android_client_info": {
           "package_name": "com.example.creditinfo"
         }
       },
       "oauth_client": [
         {
-          "client_id": "57653846854-uabc7pn5ntsvirgfjafqm2q9rsv5ve1r.apps.googleusercontent.com",
+          "client_id": "657120242684-29jv194nn7bhprf2l5l592afed72umgt.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.creditinfo",
@@ -22,20 +22,20 @@
           }
         },
         {
-          "client_id": "57653846854-575rlp9hmv6r1oosq6kojtru2tuth15o.apps.googleusercontent.com",
+          "client_id": "657120242684-ginccj6rv05rt29bcdppkljhrg2uv17f.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDQbo_Tcyxzjs_WGxM7Mw-SipooyeZuZlk"
+          "current_key": "AIzaSyBFU0EIyA4vOq5gM9IqogURDnwghTU3mO0"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "57653846854-575rlp9hmv6r1oosq6kojtru2tuth15o.apps.googleusercontent.com",
+              "client_id": "657120242684-ginccj6rv05rt29bcdppkljhrg2uv17f.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

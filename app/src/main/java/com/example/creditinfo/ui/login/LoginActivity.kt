@@ -1,6 +1,7 @@
 package com.example.creditinfo.ui.login
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -12,6 +13,7 @@ import com.google.firebase.FirebaseException
 import com.google.firebase.FirebaseTooManyRequestsException
 import com.google.firebase.auth.*
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.activity_main_screen.*
 import java.util.concurrent.TimeUnit
 
 class LoginActivity : AppCompatActivity() {
@@ -20,6 +22,7 @@ class LoginActivity : AppCompatActivity() {
     private var smsVerificationId = ""
 
     private val firebaseAuth = FirebaseAuth.getInstance()
+    private lateinit var sharedPreferences: SharedPreferences
 
     private var callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
@@ -79,11 +82,18 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+        sharedPreferences = getSharedPreferences("Login_info",MODE_PRIVATE)
 
-        login.setOnClickListener {
-          onSubmitAction()
+        if (!sharedPreferences.getBoolean("isLoginSuccessful",false)){
+            login.setOnClickListener {
+                onSubmitAction()
+            }
+        }else{
+            this.startActivity(Intent(this,MainScreenActivity::class.java))
         }
     }
+
+
 
     private fun onSubmitAction(){
 
@@ -93,6 +103,7 @@ class LoginActivity : AppCompatActivity() {
         }
         else
         {
+           sharedPreferences.edit().putString("MobileNumber",mobile_number.text.toString()).apply()
             sendVerificationCode(mobile_number.text.toString(),firebaseAuth)
             loading.visibility = View.VISIBLE
         }
@@ -141,6 +152,8 @@ class LoginActivity : AppCompatActivity() {
 
                     Toast.makeText(this,"Login Successful",Toast.LENGTH_SHORT).show()
 
+                   sharedPreferences.edit().putBoolean("isLoginSuccessful",true).apply()
+
                     this.startActivity(Intent(this,MainScreenActivity::class.java))
                     // ...
                 } else {
@@ -150,9 +163,11 @@ class LoginActivity : AppCompatActivity() {
                     if (task.exception is FirebaseAuthInvalidCredentialsException) {
                         // The verification code entered was invalid
                     }
+                    sharedPreferences.edit().putBoolean("isLoginSuccessful",false).apply()
                     Toast.makeText(this,"Login Failed",Toast.LENGTH_SHORT).show()
                 }
             }
+
     }
 
 }

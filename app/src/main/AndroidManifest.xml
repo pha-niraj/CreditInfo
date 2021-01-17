@@ -20,6 +20,8 @@
         </activity>
         <activity android:name=".ui.login.MainScreenActivity"
             android:label="MAIN SCREEN"></activity>
+        <activity android:name=".ui.login.AddCustomerActivity"
+            android:label="Add Customer"></activity>
     </application>
 
 </manifest>
