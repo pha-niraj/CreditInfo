@@ -12,15 +12,8 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_add_customer.*
 
-class AddCustomerActivity : AppCompatActivity(),ValueEventListener {
+class AddCustomerActivity : AppCompatActivity() {
 
-    override fun onCancelled(error: DatabaseError) {
-
-    }
-
-    override fun onDataChange(snapshot: DataSnapshot) {
-
-    }
 
     val database = Firebase.database
 
