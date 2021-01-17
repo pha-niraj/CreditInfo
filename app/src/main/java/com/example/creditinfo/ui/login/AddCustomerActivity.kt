@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.activity_add_customer.*
 class AddCustomerActivity : AppCompatActivity() {
 
 
-    val database = Firebase.database
+    private val database = Firebase.database
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,14 +38,11 @@ class AddCustomerActivity : AppCompatActivity() {
 
     private fun uploadCustomerDetailstoDatabase(name: String, number: String) {
          val uploadTask =  database.getReference(number).setValue(name)
+
         uploadTask.addOnSuccessListener {
-            customer_number.clearFocus()
-            customer_name.clearFocus()
             Toast.makeText(this,"Saved Successful",Toast.LENGTH_LONG).show()
         }
         uploadTask.addOnFailureListener {
-            customer_number.clearFocus()
-            customer_name.clearFocus()
             Toast.makeText(this,"Error while saving! Try again",Toast.LENGTH_LONG).show()
         }
     }
