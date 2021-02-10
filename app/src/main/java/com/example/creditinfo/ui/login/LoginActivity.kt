@@ -148,7 +148,7 @@ class LoginActivity : AppCompatActivity() {
                     Log.d("", "signInWithCredential:success")
                     loading.visibility = View.GONE
 
-                    val user = task.result?.user
+
 
                     Toast.makeText(this,"Login Successful",Toast.LENGTH_SHORT).show()
 

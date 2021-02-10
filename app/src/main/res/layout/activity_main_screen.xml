@@ -13,7 +13,7 @@
         android:layout_height="60dp"
         android:layout_marginTop="100dp"
         android:backgroundTint="@color/colorPrimary"
-        app:cardCornerRadius="10dp"
+        app:cardCornerRadius="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -31,52 +31,17 @@
 
     </androidx.cardview.widget.CardView>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/reports"
-        android:layout_width="200dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="200dp"
-        android:backgroundTint="@color/colorPrimary"
-        app:cardCornerRadius="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="REPORTS"
-            android:textAlignment="center"
-            android:textColor="@android:color/white"
-            android:textSize="20dp">
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/customer_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:padding="5dp"
+        app:layout_constraintTop_toBottomOf="@+id/add_customer_view">
 
-        </TextView>
+    </androidx.recyclerview.widget.RecyclerView>
 
-    </androidx.cardview.widget.CardView>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/profile_settings"
-        android:layout_width="200dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="300dp"
-        android:backgroundTint="@color/colorPrimary"
-        app:cardCornerRadius="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="PROFILE SETTINGS"
-            android:textAlignment="center"
-            android:textColor="@android:color/white"
-            android:textSize="20dp">
-
-        </TextView>
-
-    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

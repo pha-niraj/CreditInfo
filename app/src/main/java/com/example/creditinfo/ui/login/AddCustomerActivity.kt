@@ -5,17 +5,9 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.creditinfo.R
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.ValueEventListener
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_add_customer.*
 
 class AddCustomerActivity : AppCompatActivity() {
-
-
-    private val database = Firebase.database
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,13 +29,18 @@ class AddCustomerActivity : AppCompatActivity() {
     }
 
     private fun uploadCustomerDetailstoDatabase(name: String, number: String) {
-         val uploadTask =  database.getReference(number).setValue(name)
+
+         val uploadTask = MainScreenActivity.databaseReference.child(name).child("Balance").setValue("0")
+        MainScreenActivity.databaseReference.child(name).child("Number").setValue(number)
+
 
         uploadTask.addOnSuccessListener {
             Toast.makeText(this,"Saved Successful",Toast.LENGTH_LONG).show()
+            finish()
         }
         uploadTask.addOnFailureListener {
             Toast.makeText(this,"Error while saving! Try again",Toast.LENGTH_LONG).show()
+            finish()
         }
     }
 
@@ -54,6 +51,4 @@ class AddCustomerActivity : AppCompatActivity() {
             imm.hideSoftInputFromWindow(view.windowToken, 0)
         }
     }
-
-
 }
