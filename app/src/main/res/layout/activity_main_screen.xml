@@ -6,17 +6,36 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/add_customer_view"
-        android:layout_width="200dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="100dp"
-        android:backgroundTint="@color/colorPrimary"
-        app:cardCornerRadius="30dp"
+    <TextView
+        android:id="@+id/total_balance_textview"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="3dp"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        android:textAlignment="center"
+        android:background="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
+    </TextView>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/add_customer_view"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginBottom="3dp"
+        android:backgroundTint="@color/colorPrimary"
+        android:padding="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <TextView
             android:layout_width="wrap_content"
@@ -35,10 +54,16 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/customer_recyclerview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginBottom="3dp"
         android:padding="5dp"
-        app:layout_constraintTop_toBottomOf="@+id/add_customer_view">
+        app:layout_constraintBottom_toTopOf="@+id/add_customer_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/total_balance_textview">
 
     </androidx.recyclerview.widget.RecyclerView>
 

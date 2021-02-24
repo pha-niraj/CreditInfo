@@ -18,10 +18,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.login.MainScreenActivity"
-            android:label="MAIN SCREEN"></activity>
-        <activity android:name=".ui.login.AddCustomerActivity"
-            android:label="Add Customer"></activity>
+        <activity
+            android:name=".ui.login.MainScreenActivity"
+            android:label="MAIN SCREEN" />
+
+        <activity
+            android:name=".ui.login.NewLoginActivity"
+            android:label="Register" />
+
+        <activity
+            android:name=".ui.login.AddCustomerActivity"
+            android:label="Add Customer" />
+
         <activity android:name=".ui.login.SingleCustomerActivity"
             android:label="Customer Info">
         </activity>
