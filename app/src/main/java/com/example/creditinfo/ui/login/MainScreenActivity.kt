@@ -11,6 +11,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
+import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_main_screen.*
 
@@ -21,6 +22,7 @@ class MainScreenActivity : AppCompatActivity()
          val database = Firebase.database
          lateinit var  databaseReference : DatabaseReference
          var dataSet : ArrayList<CustomerInfo> = ArrayList()
+         var mainBalance  = "0"
     }
 
 
@@ -58,28 +60,41 @@ class MainScreenActivity : AppCompatActivity()
                 dataSet.clear()
                 for (dataSnapshot in snapshots ){
                     val customerName= dataSnapshot.key
-                    val customerBalance = dataSnapshot.child("Balance").value.toString()
-                    val customerNumber = dataSnapshot.child("Number").value.toString()
-                    val transactionList = ArrayList<CustomerTranscation>()
+                    if (customerName=="MainBalance"){
+                        mainBalance = dataSnapshot.child("MainBalance").value.toString()
+                        total_balance_textview.text = mainBalance
+                        continue
+                    }
 
-                    val transactionsDataSanps = dataSnapshot.child("transactions").children
+                    if (customerName!="CustomerName"&&customerName!="Password"&&customerName!="StoreLocation"&&customerName!="StoreName") {
+                        val customerBalance = dataSnapshot.child("Balance").value.toString()
+                        val customerNumber = dataSnapshot.child("Number").value.toString()
+                        val transactionList = ArrayList<CustomerTranscation>()
 
-                    for (transaction in transactionsDataSanps){
+                        val transactionsDataSanps = dataSnapshot.child("transactions").children
+
+                        for (transaction in transactionsDataSanps) {
 
                             val customerTransaction = CustomerTranscation(
-                                                    transaction.child("1").value.toString(),
+                                transaction.child("1").value.toString(),
                                 transaction.child("2").value.toString(),
                                 transaction.child("0").value.toString(),
                                 transaction.child("1").value.toString()
                             )
 
-                        transactionList.add(customerTransaction)
+                            transactionList.add(customerTransaction)
 
+                        }
+
+                        val customerInfo = CustomerInfo(
+                            customerName!!,
+                            customerNumber,
+                            customerBalance,
+                            transactionList
+                        )
+
+                        dataSet.add(customerInfo)
                     }
-
-                    val customerInfo = CustomerInfo(customerName!!,customerNumber,customerBalance, transactionList)
-
-                    dataSet.add(customerInfo)
 
                 }
                 adapter.notifyDataSetChanged()

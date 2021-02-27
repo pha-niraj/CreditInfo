@@ -63,11 +63,15 @@ class AddCustomerTransactionActivity : AppCompatActivity() {
 
     private fun calculateBalance(balance: Int, type: String) {
         val currentBalance = MainScreenActivity.dataSet[position].customerBalance.toInt()
+        val currentMainBalance  = MainScreenActivity.mainBalance.toInt()
 
         if (type == "You Got"){
             MainScreenActivity.databaseReference.child(name).child("Balance").setValue((currentBalance+balance).toString())
+            MainScreenActivity.databaseReference.child("MainBalance").setValue((currentMainBalance+balance).toString())
         }else {
             MainScreenActivity.databaseReference.child(name).child("Balance").setValue((currentBalance-balance).toString())
+            MainScreenActivity.databaseReference.child("MainBalance").setValue((currentMainBalance-balance).toString())
+
         }
 
     }
