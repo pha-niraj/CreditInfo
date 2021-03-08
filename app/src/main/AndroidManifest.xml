@@ -16,11 +16,15 @@
         </activity>
         <activity
             android:name=".ui.login.MainScreenActivity"
-            android:label="MAIN SCREEN" />
+            android:label="CreditInfo" />
 
         <activity
             android:name=".ui.login.RegistrationActivity"
             android:label="Register" />
+
+        <activity
+            android:name=".ui.login.OwnerInfoActivity"
+            android:label="Owner Info" />
 
         <activity
             android:name=".ui.login.NewLoginActivity"

@@ -148,8 +148,6 @@ class LoginActivity : AppCompatActivity() {
                     Log.d("", "signInWithCredential:success")
                     loading.visibility = View.GONE
 
-
-
                     Toast.makeText(this,"Login Successful",Toast.LENGTH_SHORT).show()
 
                    sharedPreferences.edit().putBoolean("isLoginSuccessful",true).apply()

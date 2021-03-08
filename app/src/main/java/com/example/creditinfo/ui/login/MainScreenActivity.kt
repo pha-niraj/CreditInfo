@@ -2,7 +2,6 @@ package com.example.creditinfo.ui.login
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.creditinfo.R
@@ -11,7 +10,6 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
-import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_main_screen.*
 
@@ -22,6 +20,7 @@ class MainScreenActivity : AppCompatActivity()
          val database = Firebase.database
          lateinit var  databaseReference : DatabaseReference
          var dataSet : ArrayList<CustomerInfo> = ArrayList()
+         var ownerInfo = OwnerInfo("","","","","")
          var mainBalance  = "0"
     }
 
@@ -30,6 +29,7 @@ class MainScreenActivity : AppCompatActivity()
 
     data class CustomerInfo(val cutomerName : String,val customerNumber : String, var customerBalance :String,var transactions : ArrayList<CustomerTranscation>)
 
+    data class OwnerInfo(var name : String,var number :String,var mainBalance : String, var storeName: String,var storeLocation : String)
 
     private lateinit var mobileNumber : String
 
@@ -37,7 +37,11 @@ class MainScreenActivity : AppCompatActivity()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_screen)
 
+        total_balance_textview.text = mainBalance
+
         mobileNumber = getSharedPreferences("Login_info",MODE_PRIVATE).getString("MobileNumber","")!!
+
+        ownerInfo.number = mobileNumber
 
         val adapter = MainRecyclerviewAdapter(dataSet,this)
 
@@ -59,14 +63,31 @@ class MainScreenActivity : AppCompatActivity()
                val snapshots =  snapshot.children
                 dataSet.clear()
                 for (dataSnapshot in snapshots ){
-                    val customerName= dataSnapshot.key
-                    if (customerName=="MainBalance"){
-                        mainBalance = dataSnapshot.child("MainBalance").value.toString()
-                        total_balance_textview.text = mainBalance
+                    val keyname= dataSnapshot.key
+
+                    if (keyname=="Password"){
                         continue
                     }
 
-                    if (customerName!="CustomerName"&&customerName!="Password"&&customerName!="StoreLocation"&&customerName!="StoreName") {
+                    if (keyname=="MainBalance"){
+                        mainBalance = dataSnapshot.value.toString()
+                        ownerInfo.mainBalance = mainBalance
+                        continue
+                    }
+
+                    else if (keyname=="CustomerName"){
+                        ownerInfo.name = dataSnapshot.value.toString()
+                        continue
+                    }
+                    else if (keyname=="StoreLocation"){
+                        ownerInfo.storeLocation = dataSnapshot.value.toString()
+                        continue
+                    }
+                    else if (keyname=="StoreName"){
+                        ownerInfo.storeName = dataSnapshot.value.toString()
+                        continue
+                    }
+                    else {
                         val customerBalance = dataSnapshot.child("Balance").value.toString()
                         val customerNumber = dataSnapshot.child("Number").value.toString()
                         val transactionList = ArrayList<CustomerTranscation>()
@@ -79,7 +100,7 @@ class MainScreenActivity : AppCompatActivity()
                                 transaction.child("1").value.toString(),
                                 transaction.child("2").value.toString(),
                                 transaction.child("0").value.toString(),
-                                transaction.child("1").value.toString()
+                                transaction.child("3").value.toString()
                             )
 
                             transactionList.add(customerTransaction)
@@ -87,7 +108,7 @@ class MainScreenActivity : AppCompatActivity()
                         }
 
                         val customerInfo = CustomerInfo(
-                            customerName!!,
+                            keyname!!,
                             customerNumber,
                             customerBalance,
                             transactionList
@@ -97,10 +118,19 @@ class MainScreenActivity : AppCompatActivity()
                     }
 
                 }
+
+                owner_info.text = ownerInfo.name+"\n"+ ownerInfo.storeName
+                total_balance_textview.text = ownerInfo.mainBalance
                 adapter.notifyDataSetChanged()
 
             }
         })
+
+
+        owner_info_layout.setOnClickListener {
+            val intent = Intent(this,OwnerInfoActivity::class.java)
+            startActivity(intent)
+        }
 
     }
 }
